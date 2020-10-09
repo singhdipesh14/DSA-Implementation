@@ -7,123 +7,124 @@ typedef struct node
     struct node *next;
 } * Node;
 
-int isEmpty(Node first)
+int isEmpty(Node head)
 {
-    if (first == NULL)
+    if (head->val == 0)
     {
         return 1;
     }
     return 0;
 }
 
-void insertR(Node *first, int key)
+void insertF(Node *head, int key)
 {
     Node n = (Node)malloc(sizeof(struct node));
     n->val = key;
     n->next = NULL;
-    if (isEmpty(*first))
+    if (isEmpty(*head))
     {
-        *first = n;
+        (*head)->next = n;
+        (*head)->val++;
         return;
     }
-    Node cur = *first;
+    n->next = (*head)->next;
+    (*head)->next = n;
+    (*head)->val++;
+}
+
+void insertR(Node *head, int key)
+{
+    Node n = (Node)malloc(sizeof(struct node));
+    n->val = key;
+    n->next = NULL;
+    if (isEmpty(*head))
+    {
+        (*head)->next = n;
+        (*head)->val++;
+        return;
+    }
+    Node cur = (*head)->next;
     while (cur->next)
     {
         cur = cur->next;
     }
     cur->next = n;
+    (*head)->val++;
 }
 
-void insertF(Node *first, int key)
+void deleteF(Node *head)
 {
-    Node n = (Node)malloc(sizeof(struct node));
-    n->val = key;
-    if (isEmpty(*first))
-    {
-        *first = n;
-        return;
-    }
-    n->next = *first;
-    *first = n;
-}
-
-void deleteR(Node *first)
-{
-    int ans;
-    if (isEmpty(*first))
+    if (isEmpty(*head))
     {
         printf("\nThe list is empty, nothing to delete");
         return;
     }
-    if ((*first)->next == NULL)
+    if ((*head)->val == 1)
     {
-        printf("\nThe deleted element is %d", (*first)->val);
-        free(*first);
-        *first = NULL;
+        printf("\nThe deleted element is : %d", (*head)->next->val);
+        free((*head)->next);
+        (*head)->next = NULL;
+        (*head)->val--;
         return;
     }
-    Node cur = *first;
-    while (cur->next->next)
+    Node tod = (*head)->next;
+    printf("\nThe deleted element is : %d", tod->val);
+    (*head)->next = tod->next;
+    (*head)->val--;
+    free(tod);
+}
+
+void deleteR(Node *head)
+{
+    if (isEmpty(*head))
+    {
+        printf("\nThe list is empty, nothing to delete");
+        return;
+    }
+    if ((*head)->val == 1)
+    {
+        printf("\nThe deleted element is : %d", (*head)->next->val);
+        free((*head)->next);
+        (*head)->next = NULL;
+        (*head)->val--;
+        return;
+    }
+    Node cur = (*head)->next;
+    Node prev = (*head);
+    while (cur->next)
     {
         cur = cur->next;
+        prev = prev->next;
     }
-    printf("\nThe deleted element is %d", cur->next->val);
-    Node temp = cur->next;
-    free(temp);
-    cur->next = NULL;
+    printf("\nThe deleted element is : %d", cur->val);
+    prev->next = NULL;
+    free(cur);
+    (*head)->val--;
 }
 
-void deleteF(Node *first)
+void display(Node head)
 {
-    if (isEmpty(*first))
-    {
-        printf("\nThe list is empty, nothing to delete");
-        return;
-    }
-    if ((*first)->next == NULL)
-    {
-        printf("\nThe deleted element is %d", (*first)->val);
-        free(*first);
-        *first = NULL;
-        return;
-    }
-    Node temp = (*first);
-    printf("\nThe deleted element is %d", ((*first)->val));
-    *first = ((*first)->next);
-    free(temp);
-}
-
-void display(Node first)
-{
-    if (isEmpty(first))
+    if (isEmpty(head))
     {
         printf("\nThe list is empty, nothing to print");
         return;
     }
     printf("\n");
-    while (first)
+    head = head->next;
+    while (head)
     {
-        printf("%d\t", first->val);
-        first = first->next;
+        printf("%d\t", head->val);
+        head = head->next;
     }
 }
 
-int search(Node first, int key)
-{
-    while (first)
-    {
-        if (first->val == key)
-        {
-            return 1;
-        }
-        first = first->next;
-    }
-    return 0;
-}
+
 
 int main()
 {
-    Node first = NULL;
+    Node head;
+    head->val = 0;
+    head->next = NULL;
     int choice = 0, ele;
     while (choice < 7)
     {
@@ -134,30 +135,30 @@ int main()
         switch (choice)
         {
         case 1:
-            display(first);
+            display(head);
             break;
 
         case 2:
             printf("\nEnter the element to be inserted : ");
             scanf("%d", &ele);
-            insertF(&first, ele);
+            insertF(&head, ele);
             break;
 
         case 3:
             printf("\nEnter the element to be inserted : ");
             scanf("%d", &ele);
-            insertR(&first, ele);
+            insertR(&head, ele);
             break;
 
         case 4:
-            deleteF(&first);
+            deleteF(&head);
             break;
 
         case 5:
-            deleteR(&first);
+            deleteR(&head);
             break;
         case 6:
-            if (isEmpty(first))
+            if (isEmpty(head))
             {
                 printf("\nThe list is empty");
             }
