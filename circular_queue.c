@@ -70,8 +70,8 @@ int front(Queue q)
 int main()
 {
     Queue intQueue;
-    intQueue.front = -1;
-    intQueue.rear = -1;
+    intQueue.front = 0;
+    intQueue.rear = 0;
     int choice = 0, ele;
     while (choice < 6)
     {
