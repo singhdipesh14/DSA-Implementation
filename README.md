@@ -1,2 +1,25 @@
 # DSA-Implementation
-This is my implementation of the Sem-3 Data structures in C.
+#### This is my implementation of the Sem-3 Data structures in C.
+_Some key points_ :  
+* The functions have been made using no-return type. You can try to implement return tye functions yourself.
+* The function for polynomials and sparse-matrix will be added soon.
+* 
+* If while compiling, the compiler shows errors, then look for any `for` loops in the code and check for the loop variable declaration.
+
+If the loop is declared like this:
+```c
+for(int i = 0; i<n; i++){
+    //some code here
+}
+```
+Change it to:
+```c
+int i;
+for(i = 0; i<n; i++){
+    //some code here
+}
+```
+Some IDEs like Code::Blocks use C89 syntax which creates the compile time error.
+
+The programs should work fine with gcc or clang compilers using make. If they don't work then pass in `-std=C99` as a flag with the compiler.
+
