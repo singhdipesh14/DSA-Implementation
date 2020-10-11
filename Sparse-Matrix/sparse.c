@@ -73,7 +73,7 @@ int main()
     scanf("%d", &row);
     printf("Enter number of columns : ");
     scanf("%d", &col);
-    int matrix[row][col];
+    int matrix;
     int choice = 0;
     printf("Choose type of input : \n1 : Full Matrix input(enter all values including zeros)\n2 : Only enter non-zeros values with row and column\nEnter choice : ");
     scanf("%d", &choice);
@@ -86,15 +86,10 @@ int main()
             for (int j = 0; j < col; j++)
             {
                 printf("ROW - %d, COL - %d : ", i + 1, j + 1);
-                scanf("%d", &matrix[i][j]);
-            }
-        }
-        for (int i = 0; i < row; i++)
-        {
-            for (int j = 0; j < col; j++)
-            {
-                if (matrix[i][j] != 0)
-                    insertE(&start, i+1, j+1, matrix[i][j]);
+                scanf("%d", &matrix);
+                if(matrix!=0){
+                    insertE(&start, i + 1, j + 1, matrix);
+                }
             }
         }
         display(start, row, col);
