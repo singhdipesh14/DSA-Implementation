@@ -89,6 +89,12 @@ void convert(char **infix, char **prefix, char **Stack, int *top, int *capacity)
         }
         else if (cur == '^')
         {
+            while ((*Stack)[*top] == '^')
+            {
+                char ins = pop(Stack, top);
+                *ptr = ins;
+                ptr++;
+            }
             push(Stack, top, capacity, cur);
         }
         else if (cur == '(')
@@ -135,7 +141,8 @@ int main()
     }
     inptr--;
     char *revptr = infix;
-    while(inptr!=input){
+    while (inptr != input)
+    {
         *revptr = *inptr;
         revptr++;
         inptr--;
@@ -147,11 +154,13 @@ int main()
     convert(sendInfix, sendPrefix, &Stack, &top, &capacity);
     printf("\nThe prefix is : ");
     char *ptr = prefix;
-    while(*ptr!='#'){
+    while (*ptr != '#')
+    {
         ptr++;
     }
     ptr--;
-    while(ptr!=prefix){
+    while (ptr != prefix)
+    {
         printf("%c", *ptr);
         ptr--;
     }
