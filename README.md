@@ -2,7 +2,7 @@
 #### This is my implementation of the Sem-3 Data structures in C.
 _Some key points_ :  
 * The functions have been made using no-return type. You can try to implement return type functions yourself.
-* The function for polynomials and sparse-matrix will be added soon.
+* The function for sparse-matrix will be added soon.
 * If while compiling, the compiler shows errors, then look for any `for` loops in the code and check for the loop variable declaration.
 
 If the loop is declared like this:
