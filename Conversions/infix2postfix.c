@@ -68,7 +68,7 @@ void convert(char **infix, char **postfix, char **Stack, int *top, int *capacity
         }
         else if (cur == '+' || cur == '-')
         {
-            while ((*Stack)[*top] == '*' || (*Stack)[*top] == '/' || (*Stack)[*top] == '%' || (*Stack)[*top] == '+' || (*Stack)[*top] == '-')
+            while ((*Stack)[*top] == '*' || (*Stack)[*top] == '/' || (*Stack)[*top] == '%' || (*Stack)[*top] == '+' || (*Stack)[*top] == '-' || (*Stack)[*top] == '^')
             {
                 char ins = pop(Stack, top);
                 *ptr = ins;
